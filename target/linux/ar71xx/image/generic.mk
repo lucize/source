@@ -1,3 +1,12 @@
+define Device/ap531b0
+  DEVICE_TITLE := Rockeetech AP531B0
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2
+  BOARDNAME = AP531B0
+  IMAGE_SIZE := 16000k
+  MTDPARTS := spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,16000k(firmware),64k(art)ro
+endef
+TARGET_DEVICES += ap531b0
+
 define Device/ap90q
   DEVICE_TITLE := YunCore AP90Q
   BOARDNAME = AP90Q
@@ -75,6 +84,14 @@ define Device/cf-e530n
   BOARDNAME = CF-E530N
 endef
 TARGET_DEVICES += cf-e530n
+
+define Device/cpe505n
+  DEVICE_TITLE := P&W CPE505N
+  BOARDNAME = CPE505N
+  IMAGE_SIZE = 16000k
+  MTDPARTS = spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,16000k(firmware),64k(art)ro
+endef
+TARGET_DEVICES += cpe505n
 
 define Device/cpe830
   $(Device/ap90q)
@@ -222,7 +239,7 @@ define Device/wndr3700
 endef
 
 define Device/wndr3700v2
-$(Device/wndr3700)
+  $(Device/wndr3700)
   DEVICE_TITLE := NETGEAR WNDR3700 v2
   NETGEAR_BOARD_ID = WNDR3700v2
   NETGEAR_KERNEL_MAGIC = 0x33373031
@@ -233,26 +250,26 @@ $(Device/wndr3700)
 endef
 
 define Device/wndr3800
-$(Device/wndr3700v2)
+  $(Device/wndr3700v2)
   DEVICE_TITLE := NETGEAR WNDR3800
   NETGEAR_BOARD_ID = WNDR3800
   NETGEAR_HW_ID = 29763654+16+128
 endef
 
 define Device/wndr3800ch
-$(Device/wndr3800)
+  $(Device/wndr3800)
   DEVICE_TITLE := NETGEAR WNDR3800 (Ch)
   NETGEAR_BOARD_ID = WNDR3800CH
 endef
 
 define Device/wndrmac
-$(Device/wndr3700v2)
+  $(Device/wndr3700v2)
   DEVICE_TITLE := NETGEAR WNDRMAC
   NETGEAR_BOARD_ID = WNDRMAC
 endef
 
 define Device/wndrmacv2
-$(Device/wndr3800)
+  $(Device/wndr3800)
   DEVICE_TITLE := NETGEAR WNDRMAC v2
   NETGEAR_BOARD_ID = WNDRMACv2
 endef
@@ -416,6 +433,15 @@ define Device/jwap230
   MTDPARTS = spi0.0:256k(u-boot)ro,64k(u-boot-env),16000k(firmware),64k(art)ro
 endef
 TARGET_DEVICES += jwap230
+
+define Device/r602n
+  DEVICE_TITLE := P&W R602N
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2
+  BOARDNAME = R602N
+  IMAGE_SIZE = 16000k
+  MTDPARTS = spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,16000k(firmware),64k(art)ro
+endef
+TARGET_DEVICES += r602n
 
 define Device/rnx-n360rt
   $(Device/tplink-4m)
@@ -669,7 +695,7 @@ define Device/seama
 endef
 
 define Device/dir-869-a1
-$(Device/seama)
+  $(Device/seama)
   DEVICE_TITLE := D-Link DIR-869 rev. A1
   DEVICE_PACKAGES := kmod-ath10k ath10k-firmware-qca988x
   BOARDNAME = DIR-869-A1
@@ -683,7 +709,7 @@ $(Device/seama)
 endef
 
 define Device/mynet-n600
-$(Device/seama)
+  $(Device/seama)
   DEVICE_TITLE := Western Digital My Net N600
   DEVICE_PACKAGES := kmod-usb-core kmod-usb2
   BOARDNAME = MYNET-N600
@@ -693,7 +719,7 @@ $(Device/seama)
 endef
 
 define Device/mynet-n750
-$(Device/seama)
+  $(Device/seama)
   DEVICE_TITLE := Western Digital My Net N750
   DEVICE_PACKAGES := kmod-usb-core kmod-usb2
   BOARDNAME = MYNET-N750
@@ -703,7 +729,7 @@ $(Device/seama)
 endef
 
 define Device/qihoo-c301
-$(Device/seama)
+  $(Device/seama)
   DEVICE_TITLE := Qihoo C301
   DEVICE_PACKAGES :=  kmod-usb-core kmod-usb2 kmod-usb-ledtrig-usbport kmod-ath10k ath10k-firmware-qca988x
   BOARDNAME = QIHOO-C301
@@ -763,3 +789,60 @@ define Device/bhr-4grv2
   IMAGE/factory.bin = append-kernel | pad-to $$$$(KERNEL_SIZE) | append-rootfs | pad-rootfs | mkbuffaloimg
 endef
 TARGET_DEVICES += bhr-4grv2
+
+define Device/wpj342
+  DEVICE_TITLE := Compex WPJ342 (16MB flash)
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport
+  BOARDNAME := WPJ342
+  MTDPARTS := spi0.0:192k(u-boot)ro,16128k(firmware),64k(art)ro
+  IMAGE_SIZE := 16128k
+endef
+TARGET_DEVICES += wpj342
+
+define Device/wpj344
+  DEVICE_TITLE := Compex WPJ344 (16MB flash)
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport
+  BOARDNAME := WPJ344
+  MTDPARTS := spi0.0:192k(u-boot)ro,16128k(firmware),64k(art)ro
+  IMAGE_SIZE := 16128k
+endef
+TARGET_DEVICES += wpj344
+
+define Device/wpj531
+  DEVICE_TITLE := Compex WPJ531 (16MB flash)
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport
+  BOARDNAME := WPJ531
+  MTDPARTS := spi0.0:192k(u-boot)ro,16128k(firmware),64k(art)ro
+  IMAGE_SIZE := 16128k
+endef
+TARGET_DEVICES += wpj531
+
+define Device/wpj558
+  DEVICE_TITLE := Compex WPJ558 (16MB flash)
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport
+  BOARDNAME := WPJ558
+  MTDPARTS := spi0.0:192k(u-boot)ro,16128k(firmware),64k(art)ro
+  IMAGE_SIZE := 16128k
+endef
+TARGET_DEVICES += wpj558
+
+define Device/wpj563
+  DEVICE_TITLE := Compex WPJ563 (16MB flash)
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport
+  BOARDNAME := WPJ563
+  MTDPARTS := spi0.0:192k(u-boot)ro,16128k(firmware),64k(art)ro
+  IMAGE_SIZE := 16128k
+endef
+TARGET_DEVICES += wpj563
+
+define Device/zbt-we1526
+  DEVICE_TITLE := Zbtlink ZBT-WE1526
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2
+  BOARDNAME := ZBT-WE1526
+  IMAGE_SIZE := 16000k
+  KERNEL_SIZE := 1472k
+  ROOTFS_SIZE := 14528k
+  MTDPARTS := spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,14528k(rootfs),1472k(kernel),64k(art)ro,16000k@0x50000(firmware)
+  IMAGE/sysupgrade.bin = append-rootfs | pad-rootfs | pad-to $$$$(ROOTFS_SIZE) | append-kernel | check-size $$$$(IMAGE_SIZE)
+endef
+TARGET_DEVICES += zbt-we1526

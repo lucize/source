@@ -130,9 +130,6 @@ ramips_board_detect() {
 	*"DCS-930L B1")
 		name="dcs-930l-b1"
 		;;
-	*"Digineo AC1200 Pro")
-		name="ac1200pro"
-		;;
 	*"DIR-300 B1")
 		name="dir-300-b1"
 		;;
@@ -189,6 +186,9 @@ ramips_board_detect() {
 		;;
 	*"EX2700")
 		name="ex2700";
+		;;
+	*"EX3700")
+		name="ex3700"
 		;;
 	*"F5D8235 v1")
 		name="f5d8235-v1"
@@ -394,8 +394,11 @@ ramips_board_detect() {
 	*"PSG1208")
 		name="psg1208"
 		;;
-	*"PSG1218")
-		name="psg1218"
+	*"PSG1218 rev.A")
+		name="psg1218a"
+		;;
+	*"PSG1218 rev.B")
+		name="psg1218b"
 		;;
 	*"PSR-680W"*)
 		name="psr-680w"
@@ -411,6 +414,9 @@ ramips_board_detect() {
 		;;
 	*"Q7")
 		name="zte-q7"
+		;;
+	*"R6220")
+		name="r6220"
 		;;
 	*"RB750Gr3")
 		name="rb750gr3"
@@ -429,6 +435,9 @@ ramips_board_detect() {
 		;;
 	*"RT5350F-OLinuXino-EVB")
 		name="rt5350f-olinuxino-evb"
+		;;
+	*"RT-AC51U")
+		name="rt-ac51u"
 		;;
 	*"RT-G32 B1")
 		name="rt-g32-b1"
@@ -640,17 +649,32 @@ ramips_board_detect() {
 	*"ZBT-WA05")
 		name="zbt-wa05"
 		;;
-	*"ZBT-WE826")
-		name="zbt-we826"
+	*"ZBT-WE1326")
+		name="zbt-we1326"
+		;;
+	*"ZBT-WE2026")
+		name="zbt-we2026"
+		;;
+	*"ZBT-WE826 (16M)")
+		name="zbt-we826-16M"
+		;;
+	*"ZBT-WE826 (32M)")
+		name="zbt-we826-32M"
 		;;
 	*"ZBT-WG2626")
 		name="zbt-wg2626"
 		;;
-	*"ZBT-WG3526")
-		name="zbt-wg3526"
+	*"ZBT-WG3526 (16M)")
+		name="zbt-wg3526-16M"
+		;;
+	*"ZBT-WG3526 (32M)")
+		name="zbt-wg3526-32M"
 		;;
 	*"ZBT-WR8305RT")
 		name="zbt-wr8305rt"
+		;;
+	*"ZyXEL Keenetic")
+		name="kn"
 		;;
 	*"ZyXEL Keenetic Omni")
 		name="kn_rc"
@@ -684,5 +708,5 @@ ramips_board_name() {
 	[ -f /tmp/sysinfo/board_name ] && name=$(cat /tmp/sysinfo/board_name)
 	[ -z "$name" ] && name="unknown"
 
-	echo "${name%-[0-9]*M}"
+	echo "${name}"
 }

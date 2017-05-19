@@ -17,17 +17,19 @@ platform_check_image() {
 	3g150b|\
 	3g300m|\
 	a5-v11|\
-	ac1200pro|\
 	ai-br100|\
 	air3gii|\
 	all0239-3g|\
-	all0256n|\
+	all0256n-4M|\
+	all0256n-8M|\
 	all5002|\
 	all5003|\
 	ar725w|\
-	asl26555|\
+	asl26555-8M|\
+	asl26555-16M|\
 	awapn2403|\
-	awm002-evb|\
+	awm002-evb-4M|\
+	awm002-evb-8M|\
 	awm003-evb|\
 	bc2|\
 	broadway|\
@@ -55,6 +57,7 @@ platform_check_image() {
 	esr-9753|\
 	ew1200|\
 	ex2700|\
+	ex3700|\
 	f7c027|\
 	firewrt|\
 	fonera20n|\
@@ -73,6 +76,7 @@ platform_check_image() {
 	jhr-n805r|\
 	jhr-n825r|\
 	jhr-n926r|\
+	kn|\
 	kn_rc|\
 	kn_rf|\
 	kng_rc|\
@@ -80,7 +84,8 @@ platform_check_image() {
 	linkits7688d|\
 	m2m|\
 	m3|\
-	m4|\
+	m4-4M|\
+	m4-8M|\
 	mac1200rv2|\
 	microwrt|\
 	miniembplug|\
@@ -103,7 +108,8 @@ platform_check_image() {
 	nbg-419n|\
 	nbg-419n2|\
 	newifi-d1|\
-	nixcore|\
+	nixcore-x1-8M|\
+	nixcore-x1-16M|\
 	nw718|\
 	omega2|\
 	omega2p|\
@@ -111,14 +117,17 @@ platform_check_image() {
 	pbr-d1|\
 	pbr-m1|\
 	psg1208|\
-	psg1218|\
+	psg1218a|\
+	psg1218b|\
 	psr-680w|\
-	px-4885|\
+	px-4885-4M|\
+	px-4885-8M|\
 	rb750gr3|\
 	re6500|\
 	rp-n53|\
 	rt5350f-olinuxino|\
 	rt5350f-olinuxino-evb|\
+	rt-ac51u|\
 	rt-g32-b1|\
 	rt-n10-plus|\
 	rt-n13u|\
@@ -137,7 +146,8 @@ platform_check_image() {
 	ur-326n4g|\
 	ur-336un|\
 	v22rw-2x2|\
-	vocore|\
+	vocore-8M|\
+	vocore-16M|\
 	vocore2|\
 	vr500|\
 	w150m|\
@@ -163,15 +173,18 @@ platform_check_image() {
 	wn3000rpv3|\
 	wnce2001|\
 	wndr3700v5|\
-	wr512-3gn|\
+	wr512-3gn-4M|\
+	wr512-3gn-8M|\
 	wr6202|\
 	wrh-300cr|\
 	wrtnode|\
 	wrtnode2r |\
 	wrtnode2p |\
 	wsr-600|\
-	wt1520|\
-	wt3020|\
+	wt1520-4M|\
+	wt1520-8M|\
+	wt3020-4M|\
+	wt3020-8M|\
 	wzr-agl300nh|\
 	x5|\
 	x8|\
@@ -180,9 +193,13 @@ platform_check_image() {
 	zbt-ape522ii|\
 	zbt-cpe102|\
 	zbt-wa05|\
-	zbt-we826|\
+	zbt-we1326|\
+	zbt-we2026|\
+	zbt-we826-16M|\
+	zbt-we826-32M|\
 	zbt-wg2626|\
-	zbt-wg3526|\
+	zbt-wg3526-16M|\
+	zbt-wg3526-32M|\
 	zbt-wr8305rt|\
 	zte-q7|\
 	youku-yk1)
@@ -229,7 +246,8 @@ platform_check_image() {
 		}
 		return 0
 		;;
-	hc5962)
+	hc5962|\
+	r6220)
 		# these boards use metadata images
 		return 0
 		;;
@@ -266,6 +284,7 @@ platform_pre_upgrade() {
 
 	case "$board" in
 	hc5962|\
+	r6220|\
     	ubnt-erx)
 		nand_do_upgrade "$ARGV"
 		;;
