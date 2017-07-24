@@ -60,7 +60,7 @@ define Device/ew1200
   IMAGE_SIZE := $(ralink_default_fw_size_16M)
   DEVICE_TITLE := AFOUNDRY EW1200
   DEVICE_PACKAGES := \
-	kmod-ata-core kmod-ata-ahci kmod-mt76x2 kmod-usb3 \
+	kmod-ata-core kmod-ata-ahci kmod-mt76x2 kmod-mt7603 kmod-usb3 \
 	kmod-usb-ledtrig-usbport wpad-mini
 endef
 TARGET_DEVICES += ew1200
@@ -87,6 +87,13 @@ define Device/hc5962
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 kmod-usb3 wpad-mini
 endef
 TARGET_DEVICES += hc5962
+
+define Device/k2p
+  DTS := K2P
+  IMAGE_SIZE := $(ralink_default_fw_size_16M)
+  DEVICE_TITLE := Phicomm K2P
+endef
+TARGET_DEVICES += k2p
 
 define Device/mt7621
   DTS := MT7621
@@ -183,6 +190,14 @@ define Device/ubnt-erx
   DEVICE_TITLE := Ubiquiti EdgeRouter X
 endef
 TARGET_DEVICES += ubnt-erx
+
+define Device/ubnt-erx-sfp
+  $(Device/ubnt-erx)
+  DTS := UBNT-ERX-SFP
+  DEVICE_TITLE := Ubiquiti EdgeRouter X-SFP
+  DEVICE_PACKAGES += kmod-i2c-algo-pca kmod-gpio-pca953x kmod-i2c-gpio-custom
+endef
+TARGET_DEVICES += ubnt-erx-sfp
 
 define Device/vr500
   DTS := VR500

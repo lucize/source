@@ -234,6 +234,9 @@ tplink_board_detect() {
 	"085000"*)
 		model="TP-Link TL-WA850RE"
 		;;
+	"085500"*)
+		model="TP-Link TL-WA855RE"
+		;;
 	"086000"*)
 		model="TP-Link TL-WA860RE"
 		;;
@@ -308,6 +311,9 @@ tplink_board_detect() {
 		;;
 	"49000002")
 		model="TP-Link TL-WDR4900"
+		;;
+	"640000"*)
+		model="TP-Link TL-MR6400"
 		;;
 	"65000002")
 		model="TP-Link TL-WDR6500"
@@ -410,6 +416,9 @@ ar71xx_board_detect() {
 	*"AP121-MINI")
 		name="ap121-mini"
 		;;
+	*"AP121F")
+		name="ap121f"
+		;;
 	*"AP132 reference board")
 		name="ap132"
 		;;
@@ -437,8 +446,14 @@ ar71xx_board_detect() {
 	*"AP90Q")
 		name="ap90q"
 		;;
+	*"Archer C25 v1")
+		name="archer-c25-v1"
+		;;
 	*"Archer C5")
 		name="archer-c5"
+		;;
+	*"Archer C58 v1")
+		name="archer-c58-v1"
 		;;
 	*"Archer C59 v1")
 		name="archer-c59-v1"
@@ -622,6 +637,9 @@ ar71xx_board_detect() {
 	*"EmbWir-Dorin-Router")
 		name="ew-dorin-router"
 		;;
+	*"ENS202EXT")
+		name="ens202ext"
+		;;
 	*"EPG5000")
 		name="epg5000"
 		;;
@@ -630,6 +648,9 @@ ar71xx_board_detect() {
 		;;
 	*"ESR900")
 		name="esr900"
+		;;
+	*"FRITZ!WLAN Repeater 300E")
+		name="fritz300e"
 		;;
 	*"GL AR150")
 		name="gl-ar150"
@@ -1016,6 +1037,9 @@ ar71xx_board_detect() {
 	*"TL-MR3420 v2")
 		name="tl-mr3420-v2"
 		;;
+	*TL-MR6400)
+		name="tl-mr6400"
+		;;
 	*"TL-WA701ND v2")
 		name="tl-wa701nd-v2"
 		;;
@@ -1042,6 +1066,9 @@ ar71xx_board_detect() {
 		;;
 	*"TL-WA850RE v2")
 		name="tl-wa850re-v2"
+		;;
+	*"TL-WA855RE v1")
+		name="tl-wa855re-v1"
 		;;
 	*"TL-WA860RE")
 		name="tl-wa860re"
@@ -1100,6 +1127,9 @@ ar71xx_board_detect() {
 	*"TL-WR720N"*)
 		name="tl-wr720n-v3"
 		;;
+	*"TL-WR740N/ND v6")
+		name="tl-wr740n-v6"
+		;;
 	*"TL-WR741ND")
 		name="tl-wr741nd"
 		;;
@@ -1142,6 +1172,9 @@ ar71xx_board_detect() {
 	*"TL-WR842N/ND v3")
 		name="tl-wr842n-v3"
 		;;
+	*"TL-WR902AC v1")
+		name="tl-wr902ac-v1"
+		;;
 	*"TL-WR940N v4")
 		name="tl-wr940n-v4"
 		;;
@@ -1153,6 +1186,9 @@ ar71xx_board_detect() {
 		;;
 	*"TL-WR941ND")
 		name="tl-wr941nd"
+		;;
+	*"TL-WR942N v1")
+		name="tl-wr942n-v1"
 		;;
 	*"Tube2H")
 		name="tube2h"
@@ -1308,13 +1344,4 @@ ar71xx_board_detect() {
 
 	echo "$AR71XX_BOARD_NAME" > /tmp/sysinfo/board_name
 	echo "$AR71XX_MODEL" > /tmp/sysinfo/model
-}
-
-ar71xx_board_name() {
-	local name
-
-	[ -f /tmp/sysinfo/board_name ] && name=$(cat /tmp/sysinfo/board_name)
-	[ -z "$name" ] && name="unknown"
-
-	echo "$name"
 }
