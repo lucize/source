@@ -44,6 +44,7 @@ define U-Boot/A20-OLinuXino-Lime
 endef
 
 define U-Boot/A20-OLinuXino-Lime2
+  BUILD_SUBTARGET:=cortexa7
   NAME:=A20 OLinuXino LIME2
   BUILD_DEVICES:=sun7i-a20-olinuxino-lime2
 endef
