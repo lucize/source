@@ -287,6 +287,22 @@ endef
 $(eval $(call KernelPackage,natsemi))
 
 
+define KernelPackage/niu
+  SUBMENU:=$(NETWORK_DEVICES_MENU)
+  TITLE:=Sun Neptune 10Gbit Ethernet support
+  DEPENDS:=@PCI_SUPPORT
+  KCONFIG:=CONFIG_NIU
+  FILES:=$(LINUX_DIR)/drivers/net/ethernet/sun/niu.ko
+  AUTOLOAD:=$(call AutoProbe,niu)
+endef
+
+define KernelPackage/natsemi/description
+ This enables support for cards based upon Sun's Neptune chipset.
+endef
+
+$(eval $(call KernelPackage,niu))
+
+
 define KernelPackage/r6040
   SUBMENU:=$(NETWORK_DEVICES_MENU)
   TITLE:=RDC Fast-Ethernet support
