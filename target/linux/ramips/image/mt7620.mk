@@ -2,7 +2,7 @@
 # MT7620A Profiles
 #
 
-DEVICE_VARS += TPLINK_BOARD_ID
+DEVICE_VARS += TPLINK_FLASHLAYOUT TPLINK_HWID TPLINK_HWREV TPLINK_HWREVADD TPLINK_HVERSION
 
 define Build/elecom-header
 	cp $@ $(KDIR)/v_0.0.0.bin
@@ -26,17 +26,22 @@ endef
 TARGET_DEVICES += ai-br100
 
 define Device/Archer
+  TPLINK_HWREVADD := 0
+  TPLINK_HVERSION := 3
   KERNEL := $(KERNEL_DTB)
-  KERNEL_INITRAMFS := $(KERNEL_DTB) | tplink-v2-header
-  IMAGE/factory.bin := tplink-v2-image
-  IMAGE/sysupgrade.bin := tplink-v2-image -s | append-metadata
+  KERNEL_INITRAMFS := $(KERNEL_DTB) | tplink-v2-header -e
+  IMAGE/factory.bin := tplink-v2-image -e
+  IMAGE/sysupgrade.bin := tplink-v2-image -s -e | append-metadata
 endef
 
 define Device/ArcherC20
   $(Device/Archer)
   DTS := ArcherC20
   SUPPORTED_DEVICES := c20
-  TPLINK_BOARD_ID := ArcherC20
+  TPLINK_FLASHLAYOUT := 8Mmtk
+  TPLINK_HWID := 0xc2000001
+  TPLINK_HWREV := 0x44
+  TPLINK_HWREVADD := 0x1
   IMAGES += factory.bin
   DEVICE_TITLE := TP-Link ArcherC20
   DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ledtrig-usbport
@@ -47,7 +52,9 @@ define Device/ArcherC20i
   $(Device/Archer)
   DTS := ArcherC20i
   SUPPORTED_DEVICES := c20i
-  TPLINK_BOARD_ID := ArcherC20i
+  TPLINK_FLASHLAYOUT := 8Mmtk
+  TPLINK_HWID := 0xc2000001
+  TPLINK_HWREV := 58
   IMAGES += factory.bin
   DEVICE_TITLE := TP-Link ArcherC20i
 endef
@@ -57,10 +64,12 @@ define Device/ArcherC50v1
   $(Device/Archer)
   DTS := ArcherC50
   SUPPORTED_DEVICES := c50
-  TPLINK_BOARD_ID := ArcherC50
+  TPLINK_FLASHLAYOUT := 8Mmtk
+  TPLINK_HWID := 0xc7500001
+  TPLINK_HWREV := 69
   IMAGES += factory-us.bin factory-eu.bin
-  IMAGE/factory-us.bin := tplink-v2-image -w 0
-  IMAGE/factory-eu.bin := tplink-v2-image -w 2
+  IMAGE/factory-us.bin := tplink-v2-image -e -w 0
+  IMAGE/factory-eu.bin := tplink-v2-image -e -w 2
   DEVICE_TITLE := TP-Link ArcherC50v1
 endef
 TARGET_DEVICES += ArcherC50v1
@@ -69,7 +78,9 @@ define Device/ArcherMR200
   $(Device/Archer)
   DTS := ArcherMR200
   SUPPORTED_DEVICES := mr200
-  TPLINK_BOARD_ID := ArcherMR200
+  TPLINK_FLASHLAYOUT := 8MLmtk
+  TPLINK_HWID := 0xd7500001
+  TPLINK_HWREV := 0x4a
   DEVICE_PACKAGES := kmod-usb2 kmod-usb-net kmod-usb-net-rndis kmod-usb-serial kmod-usb-serial-option adb-enablemodem
   DEVICE_TITLE := TP-Link ArcherMR200
 endef
@@ -181,6 +192,13 @@ define Device/gl-mt300a
   DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci kmod-mt76
 endef
 TARGET_DEVICES += gl-mt300a
+
+define Device/u25awf-h1
+  DTS := U25AWF-H1
+  IMAGE_SIZE := 16064k
+  DEVICE_TITLE := Kimax U25AWF-H1
+endef
+TARGET_DEVICES += u25awf-h1
 
 define Device/gl-mt300n
   DTS := GL-MT300N
@@ -467,6 +485,7 @@ define Device/wt3020-8M
   IMAGE/factory.bin := $$(sysupgrade_bin) | check-size $$$$(IMAGE_SIZE) | \
 	poray-header -B WT3020 -F 8M
   DEVICE_TITLE := Nexx WT3020 (8MB)
+  DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci
 endef
 TARGET_DEVICES += wt3020-8M
 
@@ -486,8 +505,9 @@ TARGET_DEVICES += y1s
 
 define Device/youku-yk1
   DTS := YOUKU-YK1
-  IMAGE_SIZE := $(ralink_default_fw_size_16M)
+  IMAGE_SIZE := $(ralink_default_fw_size_32M)
   DEVICE_TITLE := YOUKU YK1
+  DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci kmod-sdhci-mt7620 kmod-usb-ledtrig-usbport
 endef
 TARGET_DEVICES += youku-yk1
 

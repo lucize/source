@@ -161,6 +161,7 @@ define Image/BuildDTB
 	$(TARGET_CROSS)cpp -nostdinc -x assembler-with-cpp \
 		-I$(DTS_DIR) \
 		-I$(DTS_DIR)/include \
+		-I$(LINUX_DIR)/include/ \
 		-undef -D__DTS__ $(3) \
 		-o $(2).tmp $(1)
 	$(LINUX_DIR)/scripts/dtc/dtc -O dtb \
@@ -434,7 +435,23 @@ define Device/Build/compile
 
 endef
 
+ifndef IB
+define Device/Build/dtb
+  $(KDIR)/image-$(1).dtb: FORCE
+	$(call Image/BuildDTB,$(2)/$(1).dts,$$@)
+
+  $(3): $(KDIR)/image-$(1).dtb
+endef
+endif
+
 define Device/Build/kernel
+  $$(eval $$(foreach dts,$$(DEVICE_DTS), \
+	$$(call Device/Build/dtb,$$(dts), \
+		$$(if $$(DEVICE_DTS_DIR),$$(DEVICE_DTS_DIR),$$(DTS_DIR)),\
+		$$(KDIR_KERNEL_IMAGE) $(KDIR)/$$(KERNEL_INITRAMFS_NAME) \
+	) \
+  ))
+
   $(KDIR)/$$(KERNEL_NAME):: image_prepare
   $$(_TARGET): $$(if $$(KERNEL_INSTALL),$(BIN_DIR)/$$(KERNEL_IMAGE))
   $(call Device/Export,$$(KDIR_KERNEL_IMAGE),$(1))
