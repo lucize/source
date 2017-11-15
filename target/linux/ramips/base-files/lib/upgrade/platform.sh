@@ -145,6 +145,8 @@ platform_check_image() {
 	timecloud|\
 	tiny-ac|\
 	u25awf-h1|\
+	u7621-06-256M-16M|\
+	u7628-01-128M-16M|\
 	ur-326n4g|\
 	ur-336un|\
 	v22rw-2x2|\
@@ -236,6 +238,7 @@ platform_check_image() {
 	c50|\
 	mr200|\
 	tl-wr840n-v4|\
+	tl-wr840n-v5|\
 	tl-wr841n-v13)
 		[ "$magic" != "03000000" ] && {
 			echo "Invalid image type."
