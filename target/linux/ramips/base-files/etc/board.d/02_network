@@ -100,6 +100,7 @@ ramips_setup_interfaces()
 	psg1208|\
 	psg1218a|\
 	r6220|\
+	rt-n12p|\
 	sap-g3200u3|\
 	sk-wb8|\
 	u7621-06-256M-16M|\
@@ -114,6 +115,7 @@ ramips_setup_interfaces()
 	youku-yk1|\
 	zbt-ape522ii|\
 	zbt-we1326|\
+	zbt-we3526|\
 	zbt-we826-16M|\
 	zbt-we826-32M|\
 	zbt-wg2626|\

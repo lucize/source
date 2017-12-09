@@ -506,36 +506,26 @@ $(eval $(call KernelPackage,ne2k-pci))
 
 define KernelPackage/niu
   SUBMENU:=$(NETWORK_DEVICES_MENU)
+<<<<<<< HEAD
   TITLE:=Sun Neptune 10Gbit Ethernet support
   DEPENDS:=@PCI_SUPPORT
   KCONFIG:=CONFIG_NIU
   FILES:=$(LINUX_DIR)/drivers/net/ethernet/sun/niu.ko
   AUTOLOAD:=$(call AutoProbe,niu)
+=======
+  TITLE:=Intel(R) PRO/100+ cards kernel support
+  DEPENDS:=@PCI_SUPPORT +kmod-mii +e100-firmware
+  KCONFIG:=CONFIG_E100
+  FILES:=$(LINUX_DIR)/drivers/net/ethernet/intel/e100.ko
+  AUTOLOAD:=$(call AutoProbe,e100)
+>>>>>>> upstream/master
 endef
 
 define KernelPackage/natsemi/description
  This enables support for cards based upon Sun's Neptune chipset.
 endef
 
-$(eval $(call KernelPackage,niu))
-
-
-define KernelPackage/of-mdio
-  SUBMENU:=$(NETWORK_DEVICES_MENU)
-  TITLE:=OpenFirmware MDIO support
-  DEPENDS:=+kmod-libphy
-  KCONFIG:=CONFIG_OF_MDIO
-  FILES:= \
-	$(LINUX_DIR)/drivers/net/phy/fixed_phy.ko@ge4.9 \
-	$(LINUX_DIR)/drivers/of/of_mdio.ko
-  AUTOLOAD:=$(call AutoProbe,of_mdio)
-endef
-
-define KernelPackage/of-mdio/description
- Kernel driver for OpenFirmware MDIO support
-endef
-
-$(eval $(call KernelPackage,of-mdio))
+$(eval $(call KernelPackage,e100))
 
 
 define KernelPackage/pcnet32
@@ -680,10 +670,36 @@ define KernelPackage/sky2/description
   Genesis based adapters: skge.
 endef
 
+<<<<<<< HEAD
 $(eval $(call KernelPackage,sky2))
 
 
 define KernelPackage/solos-pci
+=======
+define KernelPackage/ixgbevf
+  SUBMENU:=$(NETWORK_DEVICES_MENU)
+  TITLE:=Intel(R) 82599 Virtual Function Ethernet support
+  DEPENDS:=@PCI_SUPPORT +kmod-ixgbe
+  KCONFIG:=CONFIG_IXGBEVF \
+    CONFIG_IXGBE_VXLAN=n \
+    CONFIG_IXGBE_HWMON=n \
+    CONFIG_IXGBE_DCA=n
+  FILES:=$(LINUX_DIR)/drivers/net/ethernet/intel/ixgbevf/ixgbevf.ko
+  AUTOLOAD:=$(call AutoLoad,35,ixgbevf)
+endef
+
+define KernelPackage/ixgbevf/description
+ Kernel modules for Intel(R) 82599 Virtual Function Ethernet adapters.
+endef
+
+$(eval $(call KernelPackage,ixgbevf))
+
+
+define KernelPackage/b44
+  TITLE:=Broadcom 44xx driver
+  KCONFIG:=CONFIG_B44
+  DEPENDS:=@PCI_SUPPORT @!TARGET_brcm47xx_mips74k +!TARGET_brcm47xx:kmod-ssb +kmod-mii +kmod-libphy
+>>>>>>> upstream/master
   SUBMENU:=$(NETWORK_DEVICES_MENU)
   TITLE:=Solos ADSL2+ multiport modem
   DEPENDS:=@PCI_SUPPORT +kmod-atm

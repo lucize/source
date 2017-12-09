@@ -130,6 +130,7 @@ platform_check_image() {
 	rt-ac51u|\
 	rt-g32-b1|\
 	rt-n10-plus|\
+	rt-n12p|\
 	rt-n13u|\
 	rt-n14u|\
 	rt-n15|\
@@ -202,6 +203,7 @@ platform_check_image() {
 	zbt-wa05|\
 	zbt-we1326|\
 	zbt-we2026|\
+	zbt-we3526|\
 	zbt-we826-16M|\
 	zbt-we826-32M|\
 	zbt-wg2626|\

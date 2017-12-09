@@ -460,6 +460,9 @@ ramips_board_detect() {
 	*"RT-N10+")
 		name="rt-n10-plus"
 		;;
+	*"RT-N12+")
+		name="rt-n12p"
+		;;
 	*"RT-N13U")
 		name="rt-n13u"
 		;;
@@ -737,7 +740,9 @@ ramips_board_detect() {
 		name="youku-yk1"
 		;;
 	*)
-		name="generic"
+		name="$(strings /proc/device-tree/compatible | head -1)"
+		name="${name##*,}"
+		name="${name:-generic}"
 		;;
 	esac
 
